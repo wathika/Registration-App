@@ -4,14 +4,29 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class LoginActivity extends Activity {
+
+    protected EditText mUsername;
+    protected EditText mPassword;
+    protected Button mLoginBtn;
+    protected Button mCreateAccountBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //initialize
+        mUsername = (EditText)findViewById(R.id.usernameLoginTextBox);
+        mPassword = (EditText)findViewById(R.id.passwordLoginTextBox);
+        mLoginBtn = (Button)findViewById(R.id.loginButton);
+        mCreateAccountBtn = (Button)findViewById(R.id.createAccountButton);
+
+
     }
 
     @Override
