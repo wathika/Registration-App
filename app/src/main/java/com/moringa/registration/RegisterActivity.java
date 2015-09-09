@@ -1,6 +1,7 @@
 package com.moringa.registration;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,6 +66,8 @@ public class RegisterActivity extends Activity {
                             Toast.makeText(RegisterActivity.this, "Signed Up successfully", Toast.LENGTH_LONG).show();
 
                             //send user to homepage
+                            Intent takeUserHome = new Intent(RegisterActivity.this, HomepageActivity.class);
+                            startActivity(takeUserHome);
                         }else{
                             //there was an error signing up user. Advice user
                         }
