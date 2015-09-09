@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class RegisterActivity extends Activity {
@@ -25,6 +27,16 @@ public class RegisterActivity extends Activity {
         mUserEmail = (EditText)findViewById(R.id.emailRegisterEditText);
         mUserPassword = (EditText)findViewById(R.id.passwordRegisterEditText);
         mRegisterButton = (Button)findViewById(R.id.button);
+
+        //listen to register button when clicked
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+
+                Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
