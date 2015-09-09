@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+
 
 public class RegisterActivity extends Activity {
 
@@ -20,6 +25,10 @@ public class RegisterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "6hvKUCEuyvJBrkTIrVj7PgUGUrWOcj9E51vKTkOb", "aouZYV4jg4Yv7d3JzYY2YSa7rd4Z649QlxPoVJzG");
+
         setContentView(R.layout.activity_register);
 
         //initialize
@@ -33,8 +42,36 @@ public class RegisterActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //toast
+                Toast.makeText(RegisterActivity.this, "Clicked", Toast.LENGTH_LONG).show();
 
-                Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_LONG).show();
+                //get the username, password and email and convert to string
+                String username = mUsername.getText().toString().trim();
+                String password = mUserPassword.getText().toString().trim();
+                String email = mUserEmail.getText().toString().trim();
+
+
+                //creates/store a new user in parse
+                ParseUser user = new ParseUser();
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setEmail(email);
+
+                //save with a callback to tell successful signup
+                user.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null){
+                            //user signed up successfully
+                            Toast.makeText(RegisterActivity.this, "Signed Up successfully", Toast.LENGTH_LONG).show();
+
+                            //send user to homepage
+                        }else{
+                            //there was an error signing up user. Advice user
+                        }
+
+                    }
+                });
+
             }
         });
     }
